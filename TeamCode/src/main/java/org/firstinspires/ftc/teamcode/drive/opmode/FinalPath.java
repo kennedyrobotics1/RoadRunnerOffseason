@@ -14,6 +14,7 @@ public class FinalPath extends LinearOpMode {
     public void runOpMode() {
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
+        //starts at top left corner
         drive.setPoseEstimate(new Pose2d(50, 50, Math.toRadians(270)));
         Trajectory forwardToTopRightCorner = drive.trajectoryBuilder(new Pose2d(50, 50, Math.toRadians(270)))
                         .lineTo(new Vector2d(50, -50))
