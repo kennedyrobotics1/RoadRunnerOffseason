@@ -15,11 +15,11 @@ public class FinalPath extends LinearOpMode {
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
         drive.setPoseEstimate(new Pose2d(50, 50, Math.toRadians(270)));
-        Trajectory cool = drive.trajectoryBuilder(new Pose2d(50, 50, Math.toRadians(270)))
+        Trajectory forwardToTopRightCorner = drive.trajectoryBuilder(new Pose2d(50, 50, Math.toRadians(270)))
                         .lineTo(new Vector2d(50, -50))
                         .build();
 
-        Trajectory swag = drive.trajectoryBuilder(new Pose2d(50, -50, Math.toRadians(180)))
+        Trajectory rotateToMiddleRight = drive.trajectoryBuilder(new Pose2d(50, -50, Math.toRadians(180)))
                         .lineToLinearHeading(new Pose2d(-30, -50, Math.toRadians(90)))
                         .build();
 
@@ -27,8 +27,8 @@ public class FinalPath extends LinearOpMode {
 
         if(isStopRequested()) return;
 
-        drive.followTrajectory(cool);
+        drive.followTrajectory(forwardToTopRightCorner);
         drive.turn(Math.toRadians(-90));
-        drive.followTrajectory(swag);
+        drive.followTrajectory(rotateToMiddleRight);
     }
 }
