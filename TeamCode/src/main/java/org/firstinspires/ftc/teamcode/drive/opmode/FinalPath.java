@@ -27,7 +27,22 @@ public class FinalPath extends LinearOpMode {
 
         //2nd path
 
-        //3rd path
+        //starts at middle left side of field
+        Trajectory splineToMiddleLeft = drive.trajectoryBuilder(new Pose2d(-40, 15, Math.toRadians(0)))
+                .splineTo(new Vector2d(-5,30), Math.toRadians(90))
+                .build();
+        Trajectory lineToFarLeft = drive.trajectoryBuilder(traj0.end())
+                .lineToLinearHeading(new Pose2d(-5,35, Math.toRadians(0)))
+                .build();
+        Trajectory splineToTopLeftCorner = drive.trajectoryBuilder(traj1.end())
+                .splineTo(new Vector2d(33, 45), Math.toRadians(270))
+                .build();
+        drive.turn(Math.toRadians(180));
+        drive.followTrajectory(splineToMiddleLeft);
+        drive.followTrajectory(lineToFarLeft);
+        drive.followTrajectory(splineToTopLeftCorner);
+
+
 
         //starts at top left corner
         Trajectory forwardToTopRightCorner = drive.trajectoryBuilder(new Pose2d(50, 50, Math.toRadians(270)))
