@@ -14,8 +14,22 @@ public class FinalPath extends LinearOpMode {
     public void runOpMode() {
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
+
+        //starts one tile forward from bottom right corner, angled 90 degrees to the left
+        drive.setPoseEstimate(new Pose2d(-30, -50, Math.toRadians(90)));
+
+        Trajectory lineToTopRightCorner = drive.trajectoryBuilder(new Pose2d(-30, -50, Math.toRadians(90)))
+                .lineTo(new Vector2d(59, -47))
+                .build();
+        Trajectory lineToTopLeftCornerAndRotation = drive.trajectoryBuilder(lineToTopRightCorner.end())
+                .lineToLinearHeading(new Pose2d(55, 65, Math.toRadians(180)))
+                .build();
+
+        //2nd path
+
+        //3rd path
+
         //starts at top left corner
-        drive.setPoseEstimate(new Pose2d(50, 50, Math.toRadians(270)));
         Trajectory forwardToTopRightCorner = drive.trajectoryBuilder(new Pose2d(50, 50, Math.toRadians(270)))
                         .lineTo(new Vector2d(50, -50))
                         .build();
@@ -27,6 +41,12 @@ public class FinalPath extends LinearOpMode {
         waitForStart();
 
         if(isStopRequested()) return;
+
+
+        drive.followTrajectory(lineToTopRightCorner);
+        drive.followTrajectory(lineToTopLeftCornerAndRotation);
+
+
 
         drive.followTrajectory(forwardToTopRightCorner);
         drive.turn(Math.toRadians(-90));
