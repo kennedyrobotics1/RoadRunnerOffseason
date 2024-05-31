@@ -37,10 +37,6 @@ public class FinalPath extends LinearOpMode {
         Trajectory splineToTopLeftCorner = drive.trajectoryBuilder(lineToFarLeft.end())
                 .splineTo(new Vector2d(33, 45), Math.toRadians(270))
                 .build();
-        drive.turn(Math.toRadians(180));
-        drive.followTrajectory(splineToMiddleLeft);
-        drive.followTrajectory(lineToFarLeft);
-        drive.followTrajectory(splineToTopLeftCorner);
 
 
 
@@ -61,7 +57,10 @@ public class FinalPath extends LinearOpMode {
         drive.followTrajectory(lineToTopRightCorner);
         drive.followTrajectory(lineToTopLeftCornerAndRotation);
 
-
+        drive.turn(Math.toRadians(180));
+        drive.followTrajectory(splineToMiddleLeft);
+        drive.followTrajectory(lineToFarLeft);
+        drive.followTrajectory(splineToTopLeftCorner);
 
         drive.followTrajectory(forwardToTopRightCorner);
         drive.turn(Math.toRadians(-90));
