@@ -13,21 +13,21 @@ public class PathTwo extends LinearOpMode {
     @Override
     public void runOpMode() {
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
-        // Austin's at 55, 55
-        Pose2d startPose = new Pose2d(50, 50, Math.toRadians(180));
 
+        Pose2d startPose = new Pose2d(55, 65, Math.toRadians(180));
+
+        // starts at top left corner
         drive.setPoseEstimate(startPose);
 
-        Trajectory traj0 = drive.trajectoryBuilder(startPose)
+        Trajectory topLeftToMiddleLeft = drive.trajectoryBuilder(startPose)
                 .lineToConstantHeading(new Vector2d(0, 50))
                 .build();
 
-        Trajectory traj1 = drive.trajectoryBuilder(traj0.end())
+        Trajectory middleLeftToCenter = drive.trajectoryBuilder(topLeftToMiddleLeft.end())
                 .lineToLinearHeading(new Pose2d(0, 3, Math.toRadians(270)))
                 .build();
 
-        // originally -50, may change to -53
-        Trajectory traj2 = drive.trajectoryBuilder(traj1.end())
+        Trajectory centerToMiddleBottom = drive.trajectoryBuilder(middleLeftToCenter.end())
                 .lineToLinearHeading(new Pose2d(-50, 3, Math.toRadians(180)))
                 .build();
 
@@ -35,8 +35,8 @@ public class PathTwo extends LinearOpMode {
 
         if(isStopRequested()) return;
 
-        drive.followTrajectory(traj0);
-        drive.followTrajectory(traj1);
-        drive.followTrajectory(traj2);
+        drive.followTrajectory(topLeftToMiddleLeft);
+        drive.followTrajectory(middleLeftToCenter);
+        drive.followTrajectory(centerToMiddleBottom);
     }
 }
