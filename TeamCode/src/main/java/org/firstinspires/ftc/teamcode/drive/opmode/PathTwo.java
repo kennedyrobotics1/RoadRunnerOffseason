@@ -14,12 +14,10 @@ public class PathTwo extends LinearOpMode {
     public void runOpMode() {
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
-        Pose2d startPose = new Pose2d(55, 65, Math.toRadians(180));
-
         // starts at top left corner
-        drive.setPoseEstimate(startPose);
+        drive.setPoseEstimate(new Pose2d(55, 65, Math.toRadians(180)));
 
-        Trajectory topLeftToMiddleLeft = drive.trajectoryBuilder(startPose)
+        Trajectory topLeftToMiddleLeft = drive.trajectoryBuilder(new Pose2d(55, 65, Math.toRadians(180)))
                 .lineToConstantHeading(new Vector2d(0, 50))
                 .build();
 
