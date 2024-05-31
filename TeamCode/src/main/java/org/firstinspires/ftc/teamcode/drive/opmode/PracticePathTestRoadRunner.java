@@ -29,32 +29,6 @@ public class PracticePathTestRoadRunner extends LinearOpMode {
                 .build();
 
 
-                /*.lineToSplineHeading(new Pose2d(35, -35, Math.toRadians(90)))
-                .lineTo(new Vector2d(35,35))
-                .splineTo(new Vector2d(-35,35), Math.toRadians(180))
-                .splineToConstantHeading(new Vector2d(-35, -35), Math.toRadians(270))
-                .lineToSplineHeading(new Pose2d(0, 0, Math.toRadians(450)))
-                .build();
-                .splineTo(new Vector2d(35, -30), Math.toRadians(90))
-                .splineTo(new Vector2d(45, 35), Math.toRadians(180))
-                .splineTo(new Vector2d(-40, 40), Math.toRadians(270))
-                .splineTo(new Vector2d(-40, -40), 0)
-                .splineTo(new Vector2d(0,0), 0)
-        Trajectory traj1 = drive.trajectoryBuilder(traj0.end())
-                .splineTo(new Vector2d(45, 35), 0)
-                .build();
-
-        Trajectory traj2 = drive.trajectoryBuilder(traj1.end())
-                .splineTo(new Vector2d(-40, 40), 0)
-                .build();
-
-        Trajectory traj3 = drive.trajectoryBuilder(traj2.end())
-                .splineTo(new Vector2d(-40, -40), 0)
-                .build();
-        Trajectory traj4 = drive.trajectoryBuilder(traj3.end())
-                .splineTo(new Vector2d(0,0), 0)
-                .build();
-                */
         waitForStart();
 
         if(isStopRequested()) return;
@@ -62,11 +36,7 @@ public class PracticePathTestRoadRunner extends LinearOpMode {
         drive.followTrajectory(traj0);
         drive.followTrajectory(traj1);
         drive.followTrajectory(traj2);
-        /*
-        drive.followTrajectory(traj3);
-        drive.followTrajectory(traj4);
 
-         */
     }
 }
 
