@@ -25,7 +25,20 @@ public class FinalPath extends LinearOpMode {
                 .lineToLinearHeading(new Pose2d(55, 65, Math.toRadians(180)))
                 .build();
 
-        //2nd path
+        //2nd path, starts at top left corner
+        drive.setPoseEstimate(new Pose2d(55, 65, Math.toRadians(180)));
+
+        Trajectory topLeftToMiddleLeft = drive.trajectoryBuilder(new Pose2d(55, 65, Math.toRadians(180)))
+                .lineToConstantHeading(new Vector2d(0, 50))
+                .build();
+
+        Trajectory middleLeftToCenter = drive.trajectoryBuilder(topLeftToMiddleLeft.end())
+                .lineToLinearHeading(new Pose2d(0, 3, Math.toRadians(270)))
+                .build();
+
+        Trajectory centerToMiddleBottom = drive.trajectoryBuilder(middleLeftToCenter.end())
+                .lineToLinearHeading(new Pose2d(-50, 3, Math.toRadians(180)))
+                .build();
 
         //3rd path
 
@@ -45,6 +58,10 @@ public class FinalPath extends LinearOpMode {
 
         drive.followTrajectory(lineToTopRightCorner);
         drive.followTrajectory(lineToTopLeftCornerAndRotation);
+
+        drive.followTrajectory(topLeftToMiddleLeft);
+        drive.followTrajectory(middleLeftToCenter);
+        drive.followTrajectory(centerToMiddleBottom);
 
 
 
