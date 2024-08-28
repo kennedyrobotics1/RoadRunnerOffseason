@@ -15,10 +15,9 @@ public class izzyPath extends LinearOpMode {
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
 
-        //
-        drive.setPoseEstimate(new Pose2d(18, 45, Math.toRadians(0)));
+        drive.setPoseEstimate(new Pose2d(18, -30, Math.toRadians(270)));
 
-        Trajectory forwardToWall= drive.trajectoryBuilder(new Pose2d(18, -30, Math.toRadians(0)))
+        Trajectory forwardToWall= drive.trajectoryBuilder(new Pose2d(18, -30, Math.toRadians(270)))
                 .lineTo(new Vector2d(18, -60))
                 .build();
         Trajectory forwardToMosaic= drive.trajectoryBuilder(new Pose2d(18, -60, Math.toRadians(0)))
@@ -34,6 +33,7 @@ public class izzyPath extends LinearOpMode {
 
 
         drive.followTrajectory(forwardToWall);
+        drive.turn(Math.toRadians(90));
         drive.followTrajectory(forwardToMosaic);
         drive.followTrajectory(yeetTheRobotToPark);
     }
