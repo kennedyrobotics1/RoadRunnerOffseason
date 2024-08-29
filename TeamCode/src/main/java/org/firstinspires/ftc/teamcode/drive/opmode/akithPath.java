@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
+import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 
 @Autonomous (group = "drive")
 public class akithPath extends LinearOpMode {
@@ -14,11 +15,10 @@ public class akithPath extends LinearOpMode {
     public void runOpMode() {
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
-        Trajectory fowardToWoodBack = drive.trajectoryBuilder(new Pose2d(-9, 50, Math.toRadians(0)))
-                        .lineTo(new Vector2d(48, 50))
-                        .lineTo(new Vector2d(-9, 50))
-                                .build();
-
+        TrajectorySequence forwardToWoodBack = drive.trajectorySequenceBuilder(new Pose2d(-9, 59, Math.toRadians(90)))
+                .lineTo(new Vector2d(48, 59))
+                .lineTo(new Vector2d(-9, 59))
+                .build();
 
 
         waitForStart();
@@ -26,9 +26,7 @@ public class akithPath extends LinearOpMode {
         if(isStopRequested()) return;
 
 
-        drive.turn(Math.toRadians(-90));
-        drive.followTrajectory(fowardToWoodBack);
-
+       // drive.turn(Math.toRadians(-90));
+        drive.followTrajectorySequence(forwardToWoodBack);
     }
-
 }
