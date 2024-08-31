@@ -19,11 +19,11 @@ public class OlehPath extends LinearOpMode{
         drive.setPoseEstimate(new Pose2d(-60, 60,Math.toRadians(270)));
 
         Trajectory trajectoryFirstPart = drive.trajectoryBuilder(new Pose2d(-60, 60, Math.toRadians(270)))
-                .splineTo(new Vector2d(-57.3, 27), Math.toRadians(270))
+                .splineTo(new Vector2d(-57.3, 29), Math.toRadians(270))
                 .build();
 
         Trajectory trajectorySecondPart = drive.trajectoryBuilder(trajectoryFirstPart.end())
-                .splineTo(new Vector2d(-13.5, 12), Math.toRadians(0))
+                .splineTo(new Vector2d(7.5, 12), Math.toRadians(0))
                 .build();
 
 
