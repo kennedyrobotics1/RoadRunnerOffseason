@@ -10,13 +10,13 @@ import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 
 @Autonomous (group = "drive")
 
-public class OlehPath extends LinearOpMode{
+public class ObstacleCoursePath extends LinearOpMode {
 
 
     public void runOpMode() {
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
-        drive.setPoseEstimate(new Pose2d(-60, 60,Math.toRadians(270)));
+        drive.setPoseEstimate(new Pose2d(-60, 60, Math.toRadians(270)));
 
         Trajectory trajectoryFirstPart = drive.trajectoryBuilder(new Pose2d(-60, 60, Math.toRadians(270)))
                 .splineTo(new Vector2d(-57.3, 29), Math.toRadians(270))
