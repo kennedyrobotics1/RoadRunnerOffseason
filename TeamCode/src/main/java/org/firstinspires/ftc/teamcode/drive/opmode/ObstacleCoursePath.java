@@ -26,12 +26,6 @@ public class ObstacleCoursePath extends LinearOpMode {
                 .splineTo(new Vector2d(7.5, 12), Math.toRadians(0))
                 .build();
 
-
-
-
-
-
-
         waitForStart();
 
         if(isStopRequested()) return;
