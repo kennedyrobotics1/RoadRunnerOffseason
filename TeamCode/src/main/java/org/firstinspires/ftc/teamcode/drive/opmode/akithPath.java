@@ -13,11 +13,16 @@ import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 public class akithPath extends LinearOpMode {
     @Override
     public void runOpMode() {
+
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
-        TrajectorySequence forwardToWoodBack = drive.trajectorySequenceBuilder(new Pose2d(-9, 59, Math.toRadians(90)))
+        drive.setPoseEstimate(new Pose2d(48, 59, Math.toRadians(0)));
+
+        TrajectorySequence forwardToWoodBack = drive.trajectorySequenceBuilder(new Pose2d(-10, 55, Math.toRadians(0)))
                 .lineTo(new Vector2d(48, 59))
-                .lineTo(new Vector2d(-9, 59))
+                .build();
+        Trajectory backToStart = drive.trajectoryBuilder(new Pose2d(48, 59, Math.toRadians(0)))
+                .lineTo(new Vector2d(-10, 55))
                 .build();
 
 
@@ -26,7 +31,8 @@ public class akithPath extends LinearOpMode {
         if(isStopRequested()) return;
 
 
-       // drive.turn(Math.toRadians(-90));
+        drive.turn(Math.toRadians(-90));
         drive.followTrajectorySequence(forwardToWoodBack);
+        drive.followTrajectory(backToStart);
     }
 }
