@@ -15,16 +15,17 @@ public class izzyPath extends LinearOpMode {
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
 
-        drive.setPoseEstimate(new Pose2d(18, -30, Math.toRadians(270)));
+        drive.setPoseEstimate(new Pose2d(-5, -30, Math.toRadians(270)));
 
-        Trajectory forwardToWall= drive.trajectoryBuilder(new Pose2d(18, -30, Math.toRadians(270)))
-                .lineTo(new Vector2d(18, -60))
+        Trajectory forwardToWall= drive.trajectoryBuilder(new Pose2d(-5, -30, Math.toRadians(270)))
+                .lineTo(new Vector2d(-5, -57))
                 .build();
-        Trajectory forwardToMosaic= drive.trajectoryBuilder(new Pose2d(18, -60, Math.toRadians(0)))
-                .lineTo(new Vector2d(50, -60))
+
+        Trajectory forwardToMosaic= drive.trajectoryBuilder(new Pose2d(-5, -57, Math.toRadians(90)))
+                .lineTo(new Vector2d(40, -57))
                 .build();
-        Trajectory yeetTheRobotToPark= drive.trajectoryBuilder(new Pose2d(50, -60, Math.toRadians(0)))
-                .lineTo(new Vector2d(50, -35))
+        Trajectory yeetTheRobotToPark= drive.trajectoryBuilder(new Pose2d(40, -57, Math.toRadians(90)))
+                .lineTo(new Vector2d(40, -35))
                 .build();
 
         waitForStart();
@@ -33,7 +34,7 @@ public class izzyPath extends LinearOpMode {
 
 
         drive.followTrajectory(forwardToWall);
-        drive.turn(Math.toRadians(90));
+        drive.turn(Math.toRadians(180) + 1e-6);
         drive.followTrajectory(forwardToMosaic);
         drive.followTrajectory(yeetTheRobotToPark);
     }
