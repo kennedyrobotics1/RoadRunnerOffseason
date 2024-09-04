@@ -16,15 +16,14 @@ public class akithPath extends LinearOpMode {
 
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
-        drive.setPoseEstimate(new Pose2d(48, 59, Math.toRadians(0)));
+        drive.setPoseEstimate(new Pose2d(-10, 55, Math.toRadians(90)));
 
         TrajectorySequence forwardToWoodBack = drive.trajectorySequenceBuilder(new Pose2d(-10, 55, Math.toRadians(0)))
-                .lineTo(new Vector2d(48, 59))
+                .lineTo(new Vector2d(48, 55))
                 .build();
         Trajectory backToStart = drive.trajectoryBuilder(new Pose2d(48, 59, Math.toRadians(0)))
                 .lineTo(new Vector2d(-10, 55))
                 .build();
-
 
         waitForStart();
 
