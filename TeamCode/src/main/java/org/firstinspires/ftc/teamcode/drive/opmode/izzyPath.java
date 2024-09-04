@@ -5,7 +5,6 @@ import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 
 @Autonomous (group = "drive")
@@ -13,7 +12,6 @@ public class izzyPath extends LinearOpMode {
     @Override
     public void runOpMode() {
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
-
 
         drive.setPoseEstimate(new Pose2d(-5, -30, Math.toRadians(270)));
 
@@ -31,7 +29,6 @@ public class izzyPath extends LinearOpMode {
         waitForStart();
 
         if(isStopRequested()) return;
-
 
         drive.followTrajectory(forwardToWall);
         drive.turn(Math.toRadians(180) + 1e-6);
