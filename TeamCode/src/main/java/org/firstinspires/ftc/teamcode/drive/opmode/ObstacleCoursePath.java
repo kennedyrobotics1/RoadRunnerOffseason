@@ -5,12 +5,11 @@ import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 
 @Autonomous (group = "drive")
-public class akithPath extends LinearOpMode {
+public class ObstacleCoursePath extends LinearOpMode {
     @Override
     public void runOpMode() {
 
@@ -21,7 +20,7 @@ public class akithPath extends LinearOpMode {
         TrajectorySequence forwardToWoodBack = drive.trajectorySequenceBuilder(new Pose2d(-10, 55, Math.toRadians(0)))
                 .lineTo(new Vector2d(48, 55))
                 .build();
-        Trajectory backToStart = drive.trajectoryBuilder(new Pose2d(48, 59, Math.toRadians(0)))
+        Trajectory backToStart = drive.trajectoryBuilder(new Pose2d(48, 55, Math.toRadians(0)))
                 .lineTo(new Vector2d(-10, 55))
                 .build();
 
