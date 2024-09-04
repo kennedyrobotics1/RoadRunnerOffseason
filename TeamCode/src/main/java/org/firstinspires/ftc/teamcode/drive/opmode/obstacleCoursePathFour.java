@@ -17,20 +17,6 @@ public class obstacleCoursePathFour extends LinearOpMode {
 
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
-        /* drive.setPoseEstimate(new Pose2d(-9, 59, Math.toRadians(0)));
-
-        TrajectorySequence driveUnderObstacle = drive.trajectorySequenceBuilder(new Pose2d(-9, 59, Math.toRadians(270)))
-                .lineTo(new Vector2d(-5, 59))
-                .lineTo(new Vector2d(-5, -30))
-                .build();
-
-        waitForStart();
-
-        if(isStopRequested()) return;
-
-        drive.turn(Math.toRadians(-90));
-        drive.followTrajectorySequence(driveUnderObstacle); */
-
         drive.setPoseEstimate(new Pose2d(-9, 59, Math.toRadians(0)));
 
         TrajectorySequence driveUnderObstacle = drive.trajectorySequenceBuilder(new Pose2d(-9, 59, Math.toRadians(0)))
