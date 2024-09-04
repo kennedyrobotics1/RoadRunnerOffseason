@@ -8,10 +8,12 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 
+
 @Autonomous (group = "drive")
 public class ObstacleCoursePath extends LinearOpMode {
     @Override
     public void runOpMode() {
+
 
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
@@ -24,13 +26,33 @@ public class ObstacleCoursePath extends LinearOpMode {
                 .lineTo(new Vector2d(-10, 55))
                 .build();
 
+                // big gap from 3rd chunk to 5th chunk
+
+        Trajectory forwardToWall = drive.trajectoryBuilder(new Pose2d(-5, -30, Math.toRadians(270)))
+                .lineTo(new Vector2d(-5, -57))
+                .build();
+
+        Trajectory forwardToMosaic = drive.trajectoryBuilder(new Pose2d(-5, -57, Math.toRadians(90)))
+                .lineTo(new Vector2d(40, -57))
+                .build();
+        Trajectory yeetTheRobotToPark = drive.trajectoryBuilder(new Pose2d(40, -57, Math.toRadians(90)))
+                .lineTo(new Vector2d(40, -35))
+                .build();
+
         waitForStart();
 
         if(isStopRequested()) return;
 
 
+
         drive.turn(Math.toRadians(-90));
         drive.followTrajectorySequence(forwardToWoodBack);
         drive.followTrajectory(backToStart);
+// gap 3rd to 5th chunk
+        drive.followTrajectory(forwardToWall);
+        drive.turn(Math.toRadians(180) + 1e-6);
+        drive.followTrajectory(forwardToMosaic);
+        drive.followTrajectory(yeetTheRobotToPark);
+
     }
 }
