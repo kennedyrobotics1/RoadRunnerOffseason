@@ -23,7 +23,7 @@ public class ObstacleCoursePath extends LinearOpMode {
                 .build();
 
         Trajectory trajectorySecondPart = drive.trajectoryBuilder(trajectoryFirstPart.end())
-                .splineTo(new Vector2d(7.5, 12), Math.toRadians(0))
+                .splineTo(new Vector2d(5, 10), Math.toRadians(0))
                 .build();
 
 //gap from chunk 1 to chunk 3
