@@ -16,6 +16,7 @@ public class ObstacleCoursePath extends LinearOpMode {
     public void runOpMode() {
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
+        // first part 
         drive.setPoseEstimate(new Pose2d(-60, 60, Math.toRadians(270)));
 
         Trajectory trajectoryFirstPart = drive.trajectoryBuilder(new Pose2d(-60, 60, Math.toRadians(270)))
@@ -26,8 +27,16 @@ public class ObstacleCoursePath extends LinearOpMode {
                 .splineTo(new Vector2d(5, 10), Math.toRadians(0))
                 .build();
 
-//gap from chunk 1 to chunk 3
+        drive.setPoseEstimate(new Pose2d(5, 10, Math.toRadians(0)));
 
+        // second part
+        Trajectory backUpAfterTrucking = drive.trajectoryBuilder(new Pose2d(5, 10, Math.toRadians(0)))
+                .lineTo(new Vector2d(-10, 10))
+                .build();
+        Trajectory forwardToBlueWall = drive.trajectoryBuilder(new Pose2d(-10, 10, Math.toRadians(90)))
+                .lineTo(new Vector2d(-10, 55))
+                .build();
+        // third part
         TrajectorySequence forwardToWoodBack = drive.trajectorySequenceBuilder(new Pose2d(-10, 55, Math.toRadians(0)))
                 .lineTo(new Vector2d(48, 55))
                 .build();
@@ -35,12 +44,10 @@ public class ObstacleCoursePath extends LinearOpMode {
                 .lineTo(new Vector2d(-10, 55))
                 .build();
 
-                // big gap from 3rd chunk to 5th chunk
-
+        // fifth part
         Trajectory forwardToWall = drive.trajectoryBuilder(new Pose2d(-5, -30, Math.toRadians(270)))
                 .lineTo(new Vector2d(-5, -57))
                 .build();
-
         Trajectory forwardToMosaic = drive.trajectoryBuilder(new Pose2d(-5, -57, Math.toRadians(90)))
                 .lineTo(new Vector2d(40, -57))
                 .build();
@@ -52,18 +59,21 @@ public class ObstacleCoursePath extends LinearOpMode {
 
         if(isStopRequested()) return;
 
-
+        // first chunk
         drive.followTrajectory(trajectoryFirstPart);
         drive.followTrajectory(trajectorySecondPart);
-//gap 1st to 3rd chunk
+        // second part
+        drive.followTrajectory(backUpAfterTrucking);
+        drive.turn(Math.toRadians(90));
+        drive.followTrajectory(forwardToBlueWall);
+        // third part
         drive.turn(Math.toRadians(-90));
         drive.followTrajectorySequence(forwardToWoodBack);
         drive.followTrajectory(backToStart);
-// gap 3rd to 5th chunk
+        // fifth part
         drive.followTrajectory(forwardToWall);
         drive.turn(Math.toRadians(180) + 1e-6);
         drive.followTrajectory(forwardToMosaic);
         drive.followTrajectory(yeetTheRobotToPark);
-
     }
 }
