@@ -13,9 +13,9 @@ public class ObstacleCoursePath extends LinearOpMode {
 
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
-        drive.setPoseEstimate(new Pose2d(-9, 59, Math.toRadians(0)));
+        drive.setPoseEstimate(new Pose2d(-10, 55, Math.toRadians(0)));
 
-        TrajectorySequence driveUnderObstacle = drive.trajectorySequenceBuilder(new Pose2d(-9, 59, Math.toRadians(0)))
+        TrajectorySequence driveUnderObstacle = drive.trajectorySequenceBuilder(new Pose2d(-10, 55, Math.toRadians(0)))
                 .turn(Math.toRadians(-90))
                 .lineToSplineHeading(new Pose2d(-5, 30, Math.toRadians(270)))
                 .lineToSplineHeading(new Pose2d(-5, -30, Math.toRadians(270)))
