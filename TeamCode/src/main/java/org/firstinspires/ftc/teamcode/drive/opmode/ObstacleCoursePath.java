@@ -31,7 +31,12 @@ public class ObstacleCoursePath extends LinearOpMode {
         Trajectory backToStart = drive.trajectoryBuilder(new Pose2d(48, 55, Math.toRadians(0)))
                 .lineTo(new Vector2d(-10, 55))
                 .build();
-
+        // fourth part
+        TrajectorySequence driveUnderObstacle = drive.trajectorySequenceBuilder(new Pose2d(-10, 55, Math.toRadians(0)))
+                .turn(Math.toRadians(-90))
+                .lineToSplineHeading(new Pose2d(-5, 30, Math.toRadians(270)))
+                .lineToSplineHeading(new Pose2d(-5, -30, Math.toRadians(270)))
+                .build();
         // fifth part
         Trajectory forwardToWall = drive.trajectoryBuilder(new Pose2d(-5, -30, Math.toRadians(270)))
                 .lineTo(new Vector2d(-5, -57))
@@ -55,6 +60,8 @@ public class ObstacleCoursePath extends LinearOpMode {
         drive.turn(Math.toRadians(-90));
         drive.followTrajectorySequence(forwardToWoodBack);
         drive.followTrajectory(backToStart);
+        // fourth part
+        drive.followTrajectorySequence(driveUnderObstacle);
         // fifth part
         drive.followTrajectory(forwardToWall);
         drive.turn(Math.toRadians(180) + 1e-6);
