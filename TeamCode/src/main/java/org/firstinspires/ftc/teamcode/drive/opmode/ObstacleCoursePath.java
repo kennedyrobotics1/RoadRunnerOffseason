@@ -9,33 +9,29 @@ import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 
 @Autonomous (group = "drive")
-
 public class ObstacleCoursePath extends LinearOpMode {
-
     @Override
     public void runOpMode() {
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
-        // first part 
+        // first part
         drive.setPoseEstimate(new Pose2d(-60, 60, Math.toRadians(270)));
-
         Trajectory trajectoryFirstPart = drive.trajectoryBuilder(new Pose2d(-60, 60, Math.toRadians(270)))
                 .splineTo(new Vector2d(-57.3, 29), Math.toRadians(270))
                 .build();
-
         Trajectory trajectorySecondPart = drive.trajectoryBuilder(trajectoryFirstPart.end())
                 .splineTo(new Vector2d(5, 10), Math.toRadians(0))
                 .build();
 
-        drive.setPoseEstimate(new Pose2d(5, 10, Math.toRadians(0)));
-
         // second part
+        drive.setPoseEstimate(new Pose2d(5, 10, Math.toRadians(0)));
         Trajectory backUpAfterTrucking = drive.trajectoryBuilder(new Pose2d(5, 10, Math.toRadians(0)))
                 .lineTo(new Vector2d(-10, 10))
                 .build();
         Trajectory forwardToBlueWall = drive.trajectoryBuilder(new Pose2d(-10, 10, Math.toRadians(90)))
                 .lineTo(new Vector2d(-10, 55))
                 .build();
+
         // third part
         TrajectorySequence forwardToWoodBack = drive.trajectorySequenceBuilder(new Pose2d(-10, 55, Math.toRadians(0)))
                 .lineTo(new Vector2d(48, 55))
