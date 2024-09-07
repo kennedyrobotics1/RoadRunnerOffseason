@@ -16,15 +16,14 @@ public class ObstacleCoursePath extends LinearOpMode {
 
         // first part
         drive.setPoseEstimate(new Pose2d(-60, 60, Math.toRadians(270)));
-        Trajectory trajectoryFirstPart = drive.trajectoryBuilder(new Pose2d(-60, 60, Math.toRadians(270)))
+        Trajectory trajectoryGoForward = drive.trajectoryBuilder(new Pose2d(-60, 60, Math.toRadians(270)))
                 .splineTo(new Vector2d(-57.3, 29), Math.toRadians(270))
                 .build();
-        Trajectory trajectorySecondPart = drive.trajectoryBuilder(trajectoryFirstPart.end())
+        Trajectory trajectoryTurnLeft = drive.trajectoryBuilder(trajectoryFirstPart.end())
                 .splineTo(new Vector2d(5, 10), Math.toRadians(0))
                 .build();
 
         // second part
-        drive.setPoseEstimate(new Pose2d(5, 10, Math.toRadians(0)));
         Trajectory backUpAfterTrucking = drive.trajectoryBuilder(new Pose2d(5, 10, Math.toRadians(0)))
                 .lineTo(new Vector2d(-10, 10))
                 .build();
@@ -61,8 +60,8 @@ public class ObstacleCoursePath extends LinearOpMode {
         if(isStopRequested()) return;
 
         // first chunk
-        drive.followTrajectory(trajectoryFirstPart);
-        drive.followTrajectory(trajectorySecondPart);
+        drive.followTrajectory(trajectoryGoForward);
+        drive.followTrajectory(trajectoryTurnLeft);
         // second part
         drive.followTrajectory(backUpAfterTrucking);
         drive.turn(Math.toRadians(90));
